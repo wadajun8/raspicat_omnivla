@@ -1,7 +1,7 @@
-OmniVLA-img
-OmniVLA
-omnivla-edge
-install
-log
-build
+OmniVLA-img/
+OmniVLA/
+omnivla-edge/
+install/
+log/
+build/
 camera_server
