@@ -1,7 +1,14 @@
+# externの中はプッシュしないほうがいいよね
+extern/
 OmniVLA-img/
 OmniVLA/
 omnivla-edge/
+
+# ビルドでできたやつも無視
 install/
 log/
 build/
+
+# srcの中は別リポジトリで管理するから無視
+src/
 camera_server/
