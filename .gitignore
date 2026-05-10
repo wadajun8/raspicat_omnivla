@@ -1,8 +1,8 @@
 # externの中はプッシュしないほうがいいよね
+models/
 extern/
-OmniVLA-img/
-OmniVLA/
-omnivla-edge/
+dataset/
+src/
 
 # ビルドでできたやつも無視
 install/
