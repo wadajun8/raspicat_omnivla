@@ -26,16 +26,16 @@ setup:
 	@echo "--- ライブラリをインストール中 ---"
 	$(PIP) install -r requirements.txt --ignore-installed
 	@echo "--- 仮想環境に自動設定を書き込み中 ---"
-	@printf '\n# --- OmniVLA & ROS 2 汎用自動設定 ---\n' >> $(VENV_NAME)/bin/activate
-	@printf 'VENV_BIN_DIR=$$(cd "$$(dirname "$${BASH_SOURCE[0]}")" && pwd)\n' >> $(VENV_NAME)/bin/activate
-	@printf 'WS_ROOT=$$(dirname "$$(dirname "$$VENV_BIN_DIR")")\n' >> $(VENV_NAME)/bin/activate
-	@printf 'export PYTHONNOUSERSITE=1\n' >> $(VENV_NAME)/bin/activate
-	@printf 'export PYTHONPATH="$$WS_ROOT/$(VENV_NAME)/lib/python3.10/site-packages:$$PYTHONPATH\"\n' >> $(VENV_NAME)/bin/activate
-	@printf '. /opt/ros/humble/setup.bash\n' >> $(VENV_NAME)/bin/activate
-	@printf 'if [ -f "$$WS_ROOT/install/setup.bash" ]; then . "$$WS_ROOT/install/setup.bash"; fi\n' >> $(VENV_NAME)/bin/activate
-	@printf 'echo "OmniVLA environment is ready! (Universal configuration applied)"\n' >> $(VENV_NAME)/bin/activate
-	@echo "--- 設定完了 ---"
-
+	@echo 'VENV_BIN_DIR=$$(cd "$$(dirname "$${BASH_SOURCE[0]}")" && pwd)' > extra_cfg.tmp
+	@echo 'WS_ROOT=$$(dirname "$$(dirname "$$VENV_BIN_DIR")")' >> extra_cfg.tmp
+	@echo 'export PYTHONNOUSERSITE=1' >> extra_cfg.tmp
+	@echo 'export PYTHONPATH="$$WS_ROOT/$(VENV_NAME)/lib/python3.10/site-packages:$$PYTHONPATH"' >> extra_cfg.tmp
+	@echo '. /opt/ros/humble/setup.bash' >> extra_cfg.tmp
+	@echo 'if [ -f "$$WS_ROOT/install/setup.bash" ]; then . "$$WS_ROOT/install/setup.bash"; fi' >> extra_cfg.tmp
+	@echo 'echo "OmniVLA environment is ready!"' >> extra_cfg.tmp
+	@cat extra_cfg.tmp >> $(VENV_NAME)/bin/activate
+	@rm extra_cfg.tmp
+	@echo "書き込み完了"
 # 2. ROS 2 ビルド
 build:
 	@echo "--- ビルド中 ---"
