@@ -12,3 +12,5 @@ build/
 # srcの中は別リポジトリで管理するから無視
 src/
 camera_server/
+vla_server/
+raspimouse/

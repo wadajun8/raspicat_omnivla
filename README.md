@@ -34,7 +34,7 @@ MODEL_WEIGHTS_PATH = os.path.abspath(os.path.join(current_dir, "../../../models/
 - camera\_server（2026/05/08現在プライベート）
 - vla\_server
 ```
-git clone git@github.com:wadajun8/raspaicat_omnivla.git
+git clone git@github.com:wadajun8/raspicat_omnivla.git
 cd raspicat_omnivla && mkdir src && cd src
 git clone git@github.com:wadajun8/camera_server.git
 git clone git@github.com:wadajun8/vla_server.git
