@@ -49,7 +49,7 @@ source install/setup.bash
 ros2 run camera_server camera_node
 ```
 ```
-python3 src/vla_server/vla_server/vla_node.py INITIAL INSTRUCTION
+ros2 run vla_server vla_node INITIAL INSTRUCTION
 ```
 
 - raspicat側では以下の2つを別々のターミナルで打つ（たぶん! まだやってない）
