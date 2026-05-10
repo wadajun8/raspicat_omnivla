@@ -9,10 +9,10 @@ raspicat_omnivla/
 │   └── vla_server/     # VLAノード
 ├── extern/             # 外部のGitリポジトリ（他人が作ったコード）
 │   ├── OmniVLA/        # Cloneした本体コード
-│   └── lerobot/        # (将来) データ読み込み用ツール
-├── models/             # AIの脳みそ（重みファイル）本体
+│   └── lerobot/        # (将来的にいれたい） データ読み込み用ツール
+├── models/             # AIモデル（重みファイル）本体
 │   └── omnivla-edge/   
-└── datasets/           # (将来) 学習用の巨大なデータ群
+└── datasets/           # (将来的に入れたい) 学習用の巨大なデータ群
     ├── LeLaN/
     └── GNM/
 ```
@@ -30,8 +30,36 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 MODEL_WEIGHTS_PATH = os.path.abspath(os.path.join(current_dir, "../../../models/omnivla-edge"))
 ```
 
-## 必要なノード
+## 必要なノードとsetup
 - camera\_server（2026/05/08現在プライベート）
+- vla\_server
 ```
+git clone git@github.com:wadajun8/raspaicat_omnivla.git
+cd raspicat_omnivla && mkdir src && cd src
 git@github.com:wadajun8/camera_server.git
+git@github.com:wadajun8/vla_server.git
+cd ..
+colcon build --packages-select camera_server vla_server
+source install/setup.bash
+```
+
+## 実行
+- 2つのターミナルでそれぞれを起動(今後launchファイルを作りたい！)
+```
+ros2 run camera_server camera_node
+```
+```
+python3 src/vla_server/vla_server/vla_node.py INITIAL INSTRUCTION
+```
+
+- raspicat側では以下の2つを別々のターミナルで打つ（たぶん! まだやってない）
+```
+ros2 launch raspicat raspicat.launch.py
+```
+```
+ros2 service call /motor_power std_srvs/SetBool '{data: true}'
+```
+- 指示を更新するならこれ
+```
+ros2 topic pub -1 /vla/instruction std_msgs/msg/String "{data: 'UPDATE INSTRUCTION'}"
 ```
