@@ -33,11 +33,14 @@ MODEL_WEIGHTS_PATH = os.path.abspath(os.path.join(current_dir, "../../../models/
 ## 必要なノードとsetup
 - camera\_server（2026/05/08現在プライベート）
 - vla\_server
+- このリポジトリクローンして、make setupすればいいかも
 ```
 git clone git@github.com:wadajun8/raspicat_omnivla.git
 cd raspicat_omnivla && mkdir src && cd src
 git clone git@github.com:wadajun8/camera_server.git
 git clone git@github.com:wadajun8/vla_server.git
+cd .. && mkdir extern && cd extern
+git clone https://github.com/NHirose/OmniVLA.git
 cd .. && mkdir models && cd models
 git clone https://huggingface.co/NHirose/omnivla-edge
 cd .. && colcon build --packages-select camera_server vla_server
