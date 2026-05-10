@@ -1,0 +1,28 @@
+# --- AI & Deep Learning Core ---
+torch==2.2.0
+torchvision==0.17.0
+torchaudio==2.2.0
+numpy==1.26.4
+efficientnet_pytorch
+einops==0.8.2
+clip @ git+https://github.com/openai/CLIP.git@d05afc436d78f1c48dc0dbf8e5980a9d471f35f6
+flash-attn @ https://github.com/Dao-AILab/flash-attention/releases/download/v2.5.5/flash_attn-2.5.5+cu122torch2.2cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
+
+# --- Image Processing & Utils ---
+pillow==12.2.0
+matplotlib==3.5.1
+scipy==1.10.1
+tqdm==4.67.3
+ftfy==6.3.1
+regex==2026.5.9
+
+# --- Environment & Build ---
+ninja==1.13.0
+packaging==21.3
+filelock==3.29.0
+fsspec==2026.4.0
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+requests==2.33.1
+sympy==1.14.0
+typing_extensions==4.15.0

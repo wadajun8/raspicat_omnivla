@@ -1,16 +1,42 @@
-# externの中はプッシュしないほうがいいよね
-models/
-extern/
-dataset/
-src/
+# --- Python / Environment ---
+# 仮想環境（venv_omnivla など）
+venv*/
+omnivla/
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
 
-# ビルドでできたやつも無視
+# --- ROS 2 Build Artifacts ---
+# ビルド時に生成されるディレクトリ
 install/
 log/
 build/
+.catkin_tools/
 
-# srcの中は別リポジトリで管理するから無視
-src/
-camera_server/
-vla_server/
-raspimouse/
+# --- Project Dependencies (Makefileで管理) ---
+# 他者が make setup で取得するものはプッシュしない
+# 1. AI本体のリポジトリ
+extern/
+
+# 2. 学習済みモデル
+models/
+
+# 3. データセット
+dataset/
+
+# 4. 別リポジトリで管理しているソースコード
+# フォルダ自体はあっても良いが、中身はそれぞれのGitで管理するため無視
+src/*
+
+# --- Editor / OS ---
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*~
+
+# --- Project Specific ---
+# colconの無視設定ファイル
+COLCON_IGNORE
