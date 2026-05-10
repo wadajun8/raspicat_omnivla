@@ -16,29 +16,25 @@ setup:
 	@echo "--- 仮想環境を作成中 ---"
 	python3 -m venv $(VENV_NAME) --system-site-packages
 	@echo "--- 必要なリポジトリを取得中 ---"
-	mkdir src && cd src && git clone git@github.com:wadajun8/camera_server.git && git clone git@github.com:wadajun8/vla_server.git
-	mkdir extern && cd extern && git clone https://github.com/NHirose/OmniVLA.git
-	mkdir models && cd models && git clone https://huggingface.co/NHirose/omnivla-edge
+	mkdir -p src
+	cd src && (git clone git@github.com:wadajun8/camera_server.git || true)
+	cd src && (git clone git@github.com:wadajun8/vla_server.git || true)
+	mkdir -p extern
+	cd extern && (git clone https://github.com/NHirose/OmniVLA.git || true)
+	mkdir -p models
+	cd models && (git clone https://huggingface.co/NHirose/omnivla-edge || true)
 	@echo "--- ライブラリをインストール中 ---"
 	$(PIP) install -r requirements.txt --ignore-installed
-	cat << 'EOF' >> venv_omnivla/bin/activate
-	# --- OmniVLA & ROS 2 汎用自動設定 ---
-	# このファイル(activate)の場所からワークスペースのルートを特定
-	VENV_BIN_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-	WS_ROOT=$(dirname "$(dirname "$VENV_BIN_DIR")")
-	export PYTHONNOUSERSITE=1
-	# 自分のPCでも他者のPCでも動くように相対的にパスを設定
-	export PYTHONPATH="$WS_ROOT/venv_omnivla/lib/python3.10/site-packages:$PYTHONPATH"
-	# システムのROS 2設定
-	source /opt/ros/humble/setup.bash
-	# ビルド済みパッケージがあれば読み込む
-	if [ -f "$WS_ROOT/install/setup.bash" ]; then
-	    source "$WS_ROOT/install/setup.bash"
-	fi
-	echo "OmniVLA environment is ready! (Universal configuration applied)"
-	EOF
+	@echo "--- 仮想環境に自動設定を書き込み中 ---"
+	@printf '\n# --- OmniVLA & ROS 2 汎用自動設定 ---\n' >> $(VENV_NAME)/bin/activate
+	@printf 'VENV_BIN_DIR=$$(cd "$$(dirname "$${BASH_SOURCE[0]}")" && pwd)\n' >> $(VENV_NAME)/bin/activate
+	@printf 'WS_ROOT=$$(dirname "$$(dirname "$$VENV_BIN_DIR")")\n' >> $(VENV_NAME)/bin/activate
+	@printf 'export PYTHONNOUSERSITE=1\n' >> $(VENV_NAME)/bin/activate
+	@printf 'export PYTHONPATH="$$WS_ROOT/$(VENV_NAME)/lib/python3.10/site-packages:$$PYTHONPATH\"\n' >> $(VENV_NAME)/bin/activate
+	@printf '. /opt/ros/humble/setup.bash\n' >> $(VENV_NAME)/bin/activate
+	@printf 'if [ -f "$$WS_ROOT/install/setup.bash" ]; then . "$$WS_ROOT/install/setup.bash"; fi\n' >> $(VENV_NAME)/bin/activate
+	@printf 'echo "OmniVLA environment is ready! (Universal configuration applied)"\n' >> $(VENV_NAME)/bin/activate
 	@echo "--- 設定完了 ---"
-
 
 # 2. ROS 2 ビルド
 build:
