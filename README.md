@@ -38,8 +38,9 @@ git clone git@github.com:wadajun8/raspicat_omnivla.git
 cd raspicat_omnivla && mkdir src && cd src
 git clone git@github.com:wadajun8/camera_server.git
 git clone git@github.com:wadajun8/vla_server.git
-cd ..
-colcon build --packages-select camera_server vla_server
+cd .. && mkdir models && cd models
+git clone https://huggingface.co/NHirose/omnivla-edge
+cd .. && colcon build --packages-select camera_server vla_server
 source install/setup.bash
 ```
 
