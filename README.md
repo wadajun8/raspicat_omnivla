@@ -36,14 +36,9 @@ MODEL_WEIGHTS_PATH = os.path.abspath(os.path.join(current_dir, "../../../models/
 - このリポジトリクローンして、make setupすればいいかも
 ```
 git clone git@github.com:wadajun8/raspicat_omnivla.git
-cd raspicat_omnivla && mkdir src && cd src
-git clone git@github.com:wadajun8/camera_server.git
-git clone git@github.com:wadajun8/vla_server.git
-cd .. && mkdir extern && cd extern
-git clone https://github.com/NHirose/OmniVLA.git
-cd .. && mkdir models && cd models
-git clone https://huggingface.co/NHirose/omnivla-edge
-cd .. && colcon build --packages-select camera_server vla_server
+cd raspicat_omnivla
+make setup
+colcon build --packages-select camera_server vla_server
 source install/setup.bash
 ```
 
@@ -59,7 +54,17 @@ ros2 run vla_server vla_node INITIAL INSTRUCTION
 - raspicat側では以下の2つを別々のターミナルで打つ（たぶん! まだやってない）
 ```
 ros2 launch raspicat raspicat.launch.py
-```
+何をしているか（研究の内容「何を解決するためにどうやって解決しようとしてるか」）
+研究全体で今どこまでできているか
+研究全体で次何するべきか
+
+
+そして先生に報告する内容として↑よりもう少し局所的な
+
+今週なにした or しているか （エフォートもお願いします）
+何が得られたか
+次に何をするか
+詰まっていることor悩んでいること（その前に先輩に相談してくれてもいいです俺とか）```
 ```
 ros2 service call /motor_power std_srvs/SetBool '{data: true}'
 ```
