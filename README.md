@@ -38,6 +38,7 @@ MODEL_WEIGHTS_PATH = os.path.abspath(os.path.join(current_dir, "../../../models/
 git clone git@github.com:wadajun8/raspicat_omnivla.git
 cd raspicat_omnivla
 make setup
+source venv_omnivla/bin/activate
 colcon build --packages-select camera_server vla_server
 source install/setup.bash
 ```
