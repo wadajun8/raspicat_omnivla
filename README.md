@@ -56,6 +56,7 @@ ros2 run vla_server vla_node INITIAL INSTRUCTION
 ```
 ros2 launch raspicat raspicat.launch.py
 ```
+```
 ros2 service call /motor_power std_srvs/SetBool '{data: true}'
 ```
 - 指示を更新するならこれ
