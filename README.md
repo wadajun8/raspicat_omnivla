@@ -54,17 +54,6 @@ ros2 run vla_server vla_node INITIAL INSTRUCTION
 - raspicat側では以下の2つを別々のターミナルで打つ（たぶん! まだやってない）
 ```
 ros2 launch raspicat raspicat.launch.py
-何をしているか（研究の内容「何を解決するためにどうやって解決しようとしてるか」）
-研究全体で今どこまでできているか
-研究全体で次何するべきか
-
-
-そして先生に報告する内容として↑よりもう少し局所的な
-
-今週なにした or しているか （エフォートもお願いします）
-何が得られたか
-次に何をするか
-詰まっていることor悩んでいること（その前に先輩に相談してくれてもいいです俺とか）```
 ```
 ros2 service call /motor_power std_srvs/SetBool '{data: true}'
 ```
