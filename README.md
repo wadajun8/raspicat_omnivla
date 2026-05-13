@@ -13,6 +13,11 @@ source install/setup.bash
 ```
 ## 実行
 - 2つのターミナルでそれぞれを起動(今後launchファイルを作りたい！)
+  - 先に環境を読み込んでソースしてから
+```
+source venv_omnivla/bin/activate
+source install/setup.bash
+```
 ```
 ros2 run camera_server camera_node
 ```
