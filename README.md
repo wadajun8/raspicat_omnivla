@@ -1,4 +1,4 @@
-# ROS2でOmniVLA-edgeを使用するためのリポジトリ
+# [raspicat](https://rt-net.jp/products/raspberry-pi-cat/)でOmniVLA-edgeを使用するためのリポジトリ
 [OmniVLA](https://github.com/NHirose/OmniVLA)-edgeでカメラから取得した画像と言語指示に基づいた自律移動を行うためのワークスペースです。  
 [vla_server](https://github.com/wadajun8/vla_server)と[camera_server](https://github.com/wadajun8/camera_server)を使います。
 
