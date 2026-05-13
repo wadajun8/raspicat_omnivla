@@ -1,3 +1,8 @@
+# ==============================================================================
+# Copyright (c) 2026 Junya Wada
+# Released under the BSD-3-Clause
+# ==============================================================================
+
 # 変数定義
 VENV_NAME := venv_omnivla
 PYTHON := ./$(VENV_NAME)/bin/python3
@@ -41,7 +46,6 @@ build:
 	@echo "--- ビルド中 ---"
 	touch $(VENV_NAME)/COLCON_IGNORE
 	bash -c "source /opt/ros/humble/setup.bash && colcon build --packages-select camera_server vla_server"
-
 
 # 4. 掃除
 clean:

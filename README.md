@@ -1,7 +1,5 @@
-# ほぼメモ
-## OmniVLAについて
-- Conda環境のセットアップ等はOmniVLAのREADMEを参照して
-- モデルの重みの位置とか変えてるから気をつけて
+# ROS2でOmniVLAを使用するためのリポジトリ
+## ディレクトリ構造
 ```
 raspicat_omnivla/
 ├── src/                # ROS 2の自作パッケージ（自作のコード）
@@ -17,23 +15,7 @@ raspicat_omnivla/
     └── GNM/
 ```
 
-- extern/OmniVLA/inference/run\_omnivla\_edge.pyを使うときCLIPが必要っぽい
-```
-pip install git+https://github.com/openai/CLIP.git
-```
-- OmniVLAのreadmeと違うディレクトリ(models)にmodelの重みをおいたのでMODEL\_WEIGHTS\_PATHを変更してる
-```
-# run_omnivla_edge.pyがあるディレクトリのパスを取得
-current_dir = os.path.dirname(os.path.abspath(__file__))
-
-# そこから3階層上がって models/omnivla-edge につなぎ、綺麗な絶対パスに自動変換する
-MODEL_WEIGHTS_PATH = os.path.abspath(os.path.join(current_dir, "../../../models/omnivla-edge"))
-```
-
-## 必要なノードとsetup
-- camera\_server（2026/05/08現在プライベート）
-- vla\_server
-- このリポジトリクローンして、make setupすればいいかも
+## setup
 ```
 git clone git@github.com:wadajun8/raspicat_omnivla.git
 cd raspicat_omnivla
@@ -42,7 +24,6 @@ source venv_omnivla/bin/activate
 colcon build --packages-select camera_server vla_server
 source install/setup.bash
 ```
-
 ## 実行
 - 2つのターミナルでそれぞれを起動(今後launchファイルを作りたい！)
 ```
@@ -63,3 +44,5 @@ ros2 service call /motor_power std_srvs/SetBool '{data: true}'
 ```
 ros2 topic pub -1 /vla/instruction std_msgs/msg/String "{data: 'UPDATE INSTRUCTION'}"
 ```
+## ライセンス
+- このリポジトリは3条項BSDライセンスのもとで公開されています。
