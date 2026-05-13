@@ -1,4 +1,4 @@
-# ROS2でOmniVLAを使用するためのリポジトリ
+# ROS2でOmniVLA-edgeを使用するためのリポジトリ
 ## ディレクトリ構造
 ```
 raspicat_omnivla/
