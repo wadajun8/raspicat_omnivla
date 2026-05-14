@@ -1,6 +1,6 @@
 # ==============================================================================
+# SPDX-FileCopyrightText: 2026 Junya Wada
 # SPDX-License-Identifier: BSD-3-Clause
-# Copyright (c) 2026 Junya Wada
 # ==============================================================================
 
 # 変数定義
@@ -45,7 +45,7 @@ setup:
 build:
 	@echo "--- ビルド中 ---"
 	touch $(VENV_NAME)/COLCON_IGNORE
-	bash -c "source /opt/ros/humble/setup.bash && colcon build --packages-select camera_server vla_server"
+	bash -c "source /opt/ros/humble/setup.bash && colcon build --packages-select camera_server vla_server "
 
 # 4. 掃除
 clean:
